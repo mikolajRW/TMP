@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <title>Login Page</title>
+</head>
+<body>
+<h1>Login</h1>
+
+<form method="post" id="login">
+    <label for="username">Username:</label>
+    <input type="text" id="username" name="username" required><br><br>
+
+    <label for="password">Password:</label>
+    <input type="password" id="password" name="password" required><br><br>
+
+    <button type="submit">Login</button>
+
+    <script>
+        const form = document.getElementById('login');
+        form.addEventListener('submit', (event) => {
+            event.preventDefault();
+            if (form.elements['username'].value === 'student' && form.elements['password'].value === 'student') {
+                window.location.href = 'student.html';
+            }if (form.elements['username'].value === 'teacher' && form.elements['password'].value === 'teacher') {
+                window.location.href = 'teacher.html';
+            }
+        });
+    </script>
+
+</form>
+</body>
+</html>
