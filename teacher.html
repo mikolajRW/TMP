@@ -1,22 +1,31 @@
 <!DOCTYPE html>
 <html lang="pl">
 <head>
-  <title>Teacher Page</title>
+    <link rel="stylesheet" href="css.css">
+    <title>Teacher Page</title>
 </head>
 <body>
-<div style="background-color: green; color: white; padding: 10px; text-align: center;">
-  <h1>Teacher Portal</h1>
-  <button>
-    <a href="index.html">Log Out</a>
-  </button>
-</div>
-<div >
-<h2>Welcome, <?php echo $_POST['username'] ?></h2>
-</div>
-<div>
-<p>This is the teacher-specific content.</p>
-  <h3>add assignment</h3>
-  <h3>view assignments</h3>
-</div>
+    <div style="background-color: green; color: white; padding: 10px; text-align: center;">
+        <h1>Teacher Portal</h1>
+        <button>
+            <a href="index.html">Log Out</a>
+        </button>
+    </div>
+    <div style="text-align:center;">
+        <h2>Welcome, <?php echo $_POST['username'] ?></h2>
+    </div>
+    <div style="text-align:center;">
+        <p>This is the teacher-specific content.</p>
+    </div>
+    <div>
+        <ul>
+            <li>
+               <a style="color:black; text-decoration:none;font-weight:bold" href="assignment.html">add assignment</a> 
+            </li>
+            <li>
+                <a style="color:black; text-decoration:none;font-weight:bold" href="viewAssignments.html">view assignments</a>
+            </li>
+        </ul>
+    </div>
 </body>
 </html>

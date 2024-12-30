@@ -16,6 +16,7 @@
     <button type="submit">Login</button>
 
     <script>
+        localStorage.setItem("index", 0);
         const form = document.getElementById('login');
         form.addEventListener('submit', (event) => {
             event.preventDefault();
