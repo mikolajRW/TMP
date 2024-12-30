@@ -1,0 +1,75 @@
+﻿<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <link rel="stylesheet" href="css.css">
+    <title>Teacher Page</title>
+</head>
+<body>
+    <div style="background-color: green; color: white; padding: 10px; text-align: center;">
+        <h1>Teacher Portal</h1>
+        <button>
+            <a href="index.html">Log Out</a>
+        </button>
+    </div>
+    <div style="text-align:center;">
+        <h2>Welcome, <?php echo $_POST['username'] ?></h2>
+    </div>
+    <div style="text-align:center;">
+        <p>This is the teacher-specific content.</p>
+    </div>
+    <br />
+    <br />
+    <script>
+        var tasks = [];
+    </script>
+    <div class="menu">
+        <div class="task_part">
+            <h2>List of published tasks</h2>
+            <p id="titles">
+            </p>
+            <script>  
+                
+                const displayContainer = document.getElementById("titles");
+                if (localStorage.length == 0) {
+                    displayContainer.innerHTML = "<p>No tasks available.</p>";
+                }
+                
+                for (let i = 0; i < localStorage.length; i++) {
+                    const key = localStorage.key(i); 
+                    if (isNaN(key)) {
+                        continue;
+                    }
+                    const taskString = localStorage.getItem(key);
+                    const task = JSON.parse(taskString); 
+                    displayContainer.innerHTML += `
+                        <div>
+                            <p><strong>Task</strong></p>
+                            <p>Group: ${task.group}</p>
+                            <p>Title: ${task.taskTitle}</p>
+                            <p>Description: ${task.description}</p>
+                            <p>Obligatory: ${task.isObligatory ? "Yes" : "No"}</p>
+                            <p>Due Date: ${task.dueDate}</p>
+                            <hr>
+                        </div>
+                    `;
+                };
+
+
+
+
+            </script>
+        </div>
+        <div>
+            <ul>
+                <li>
+                    <a style="color: black; text-decoration: none; font-weight: bold;" href="assignment.html">add assignment</a>
+                </li>
+                <li>
+                    <a style="color:black; text-decoration:none;font-weight:bold" href="viewAssignments.html">view assignments</a>
+                </li>
+            </ul>
+        </div>
+
+    </div>
+</body>
+</html>

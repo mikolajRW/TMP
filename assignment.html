@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <link rel="stylesheet" href="css.css">
+    <title>Teacher Page</title>
+</head>
+<body>
+    <div style="background-color: green; color: white; padding: 10px; text-align: center;">
+        <h1>Teacher Portal</h1>
+        <button>
+            <a href="index.html">Log Out</a>
+        </button>
+    </div>
+    <div style="text-align:center;">
+        <h2>Welcome, <?php echo $_POST['username'] ?></h2>
+    </div>
+    <div style="text-align:center;">
+        <p>This is the teacher-specific content.</p>
+    </div>
+    <br />
+    <br />
+    <div class="menu">
+        <div class="task_part">
+            <form id="add-task">
+                <div>
+                    <label>
+                        <p style="text-align:center">Choose groups</p>
+                    </label>
+
+                    <select id="groupId">
+                        <option>Data Engineering - year II - group 2a </option>
+                        <option>Data Engineering - year I - group 1b </option>
+                        <option>
+                            Data Engineering - year III - group 3c
+                        </option>
+                        <option value="other">Computer Science - year I - group 3b </option>
+                    </select>
+                </div>
+                <div>
+                    <label>
+                        <p style="text-align:center">Task Title</p>
+                    </label>
+                    <input type="text" id="titleId"
+                           placeholder="Enter assignment title" />
+                </div>
+                <div>
+                    <label>
+                        <p style="text-align:center">Task Description</p>
+                    </label>
+                    <textarea id="descId" rows="10" cols="80" placeholder="Enter assignment description">
+                    </textarea>
+                </div>
+                <div>
+                    <label>
+                        <p style="text-align:center">Obligatory</p>
+                    </label>
+                    <select id="oblId">
+                        <option>Yes</option>
+                        <option>No</option>
+                    </select>
+                </div>
+                <div>
+                    <label>
+                        <p style="text-align:center">Deadline</p>
+                    </label>
+                    <input type="date" id="dateId" placeholder="Enter date of deadline" />
+                </div>
+                <br />
+                <button type="submit">Post</button>
+                <br />
+                <p id="task_published">
+
+                </p>
+
+
+                <script>
+                    
+                    const form = document.getElementById('add-task');
+                    form.addEventListener('submit', (event) => {
+                        event.preventDefault();
+                        const group = document.getElementById("groupId");
+                        const title = document.getElementById("titleId");
+                        const desc = document.getElementById("descId");
+                        const oblFlag = document.getElementById("oblId");
+                        const date = document.getElementById("dateId");
+                        const taskData = {
+                            group: group.value,
+                            taskTitle: title.value,
+                            description: desc.value,
+                            isObligatory: oblFlag.value, 
+                            dueDate: date.value
+                        };
+                        index = Number(localStorage.getItem("index"))
+                        localStorage.setItem(index, JSON.stringify(taskData));
+
+                        
+                        const displayContainer = document.getElementById("task_published");
+                        displayContainer.innerHTML = "<h3>Task was published</h3>";
+                        displayContainer.innerHTML +=
+                            `<div> <button style="color: black; text-decoration: none; font-weight: bold;"> <a href="assignment.html">Add new task</a> </button></div >`;
+                        
+                        index = index + 1;
+                       
+                        localStorage.setItem("index", index)
+                     
+                    });
+
+                    
+
+
+                    
+                </script>
+            </form>
+        </div>
+        <div>
+            <ul>
+                <li>
+                    <a style="color: black; text-decoration: none; font-weight: bold;" href="assignment.html">add assignment</a>
+                </li>
+                <li>
+                    <a style="color:black; text-decoration:none;font-weight:bold" href="viewAssignments.html">view assignments</a>
+                </li>
+            </ul>
+        </div>
+
+    </div>
+</body>
+</html>
