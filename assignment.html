@@ -65,6 +65,13 @@
                     </label>
                     <input type="date" id="dateId" placeholder="Enter date of deadline" />
                 </div>
+                <div>
+                    <label>
+                        <p style="text-align:center">Task Title</p>
+                    </label>
+                    <input type="text" id="pointsId"
+                           placeholder="Enter maximum amount of points" />
+                </div>
                 <br />
                 <button type="submit">Post</button>
                 <br />
@@ -83,12 +90,14 @@
                         const desc = document.getElementById("descId");
                         const oblFlag = document.getElementById("oblId");
                         const date = document.getElementById("dateId");
+                        const points = document.getElementById("pointsId")
                         const taskData = {
                             group: group.value,
                             taskTitle: title.value,
                             description: desc.value,
                             isObligatory: oblFlag.value, 
-                            dueDate: date.value
+                            dueDate: date.value,
+                            points: points.value
                         };
                         index = Number(localStorage.getItem("index"))
                         localStorage.setItem(index, JSON.stringify(taskData));
