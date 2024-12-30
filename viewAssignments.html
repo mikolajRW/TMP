@@ -10,6 +10,7 @@
         <button>
             <a href="index.html">Log Out</a>
         </button>
+        <button onclick="clearStorage()">Clear All Assignments</button>
     </div>
     <div style="text-align:center;">
         <h2>Welcome, <?php echo $_POST['username'] ?></h2>
@@ -21,6 +22,11 @@
     <br />
     <script>
         var tasks = [];
+
+        function clearStorage(){
+            localStorage.clear();
+            location.reload();
+        }
     </script>
     <div class="menu">
         <div class="task_part">
@@ -47,8 +53,9 @@
                             <p>Group: ${task.group}</p>
                             <p>Title: ${task.taskTitle}</p>
                             <p>Description: ${task.description}</p>
-                            <p>Obligatory: ${task.isObligatory ? "Yes" : "No"}</p>
+                            <p>Obligatory: ${task.isObligatory}</p>
                             <p>Due Date: ${task.dueDate}</p>
+                            <button onclick="window.location.href = 'editAssignment.html?id=${key}'">Edit</button>
                             <hr>
                         </div>
                     `;

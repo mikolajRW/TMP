@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <link rel="stylesheet" href="css.css">
+    <title>Title</title>
+</head>
+<body>
+    <div style="background-color: green; color: white; padding: 10px; text-align: center;">
+        <h1>Teacher Portal</h1>
+        <button><a href="index.html">Log Out</a> </button>
+    </div>
+
+    <div class="menu">
+        <div class="task_part">
+            <h2>Edit assignment</h2>
+            <form id="edit-task">
+                <input type="hidden" id="taskId">
+                <div>
+                    <label><p style="text-align:center">Choose groups</p></label>
+                    <select id="groupId">
+                        <option>Data Engineering - year II - group 2a</option>
+                        <option>Data Engineering - year I - group 1b</option>
+                        <option>Data Engineering - year III - group 3c</option>
+                        <option>Computer Science - year I - group 3b</option>
+                    </select>
+                </div>
+                <div>
+                    <label><p style="text-align: center">Task Title</p> </label>
+                    <input type="text" id="titleId" placeholder="Enter assignment title" required/>
+                </div>
+                <div>
+                    <label><p style="text-align:center">Task Description</p></label>
+                    <textarea id="descId" rows="10" cols="80" placeholder="Enter assignment description" required></textarea>
+                </div>
+                <div>
+                    <label><p style="text-align: center">Obligatory</p> </label>
+                    <select id="oblId">
+                        <option>Yes</option>
+                        <option>No</option>
+                    </select>
+                </div>
+                <div>
+                    <label<p style="text-align:center">Deadline</p></label>
+                    <input type="date" id="dateId" placeholder="Enter date of deadline" required/>
+                </div>
+                <br />
+                <button type="submit">Save Changes</button>
+                <button type="button" onclick="cancelEdit()">Cancel</button>
+            </form>
+        </div>
+        <div>
+            <ul>
+                <li><a style="color: black; text-decoration: none; font-weight: bold;" href="assignment.html">add assignment</a></li>
+                <li><a style="color:black; text-decoration:none;font-weight:bold" href="viewAssignments.html">view assignments</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <script>
+        const urlParams = new URLSearchParams(window.location.search);
+        const taskId = urlParams.get('id');
+        document.getElementById('taskId').value = taskId;
+
+        const taskData = JSON.parse(localStorage.getItem(taskId));
+        if (taskData) {
+            document.getElementById('groupId').value = taskData.group;
+            document.getElementById('titleId').value = taskData.taskTitle;
+            document.getElementById('descId').value = taskData.description;
+            document.getElementById('oblId').value = taskData.isObligatory;
+            document.getElementById('dateId').value = taskData.dueDate;
+        }
+
+        document.getElementById('edit-task').addEventListener('submit', (event) => {
+            event.preventDefault();
+
+            const updatedTask = {
+                group: document.getElementById('groupId').value,
+                taskTitle: document.getElementById('titleId').value,
+                description: document.getElementById('descId').value,
+                isObligatory: document.getElementById('oblId').value,
+                dueDate: document.getElementById('dateId').value
+            };
+            localStorage.setItem(taskId, JSON.stringify(updatedTask));
+            window.location.href = 'viewAssignments.html';
+        });
+
+        function cancelEdit() {
+            window.location.href = 'viewAssignments.html';
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,21 @@
+{
+  "name": "tmp",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mikolajRW/TMP"
+  },
+  "private": true,
+  "devDependencies": {
+    "jest": "^29.7.0",
+    "jest-localstorage-mock": "^2.4.26"
+  },
+  "jest": {
+    "setupFiles": ["<rootDir>/jest.setup.js"]
+  }
+}
